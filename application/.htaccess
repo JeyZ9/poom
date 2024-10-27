@@ -1,0 +1,27 @@
+# Block access to this folder from the web (uncomment if necessary)
+# <IfModule authz_core_module>
+#     Require all denied
+# </IfModule>
+# <IfModule !authz_core_module>
+#     Deny from all
+# </IfModule>
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Set the base folder (change this to match your project folder name in htdocs)
+RewriteBase /project-final/
+
+# Redirect any direct requests for files or directories to the actual file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all other requests to index.php/ followed by the requested URI
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+# Additional settings (optional)
+# Prevent access to certain file extensions, if desired
+<FilesMatch "\.(ini|log|sh|inc|bak|sql)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
