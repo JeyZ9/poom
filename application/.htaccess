@@ -25,3 +25,10 @@ RewriteRule ^(.*)$ index.php/$1 [L]
     Order Allow,Deny
     Deny from all
 </FilesMatch>
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "POST, GET, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+

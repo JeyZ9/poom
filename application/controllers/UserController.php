@@ -73,46 +73,58 @@ class UserController extends CI_Controller
         
     }
 
-    public function login()
-    {
-        $inputJSON = file_get_contents('php://input');
-        $input = json_decode($inputJSON, true);
-
-        if (!isset($input['email']) || !isset($input['password'])) {
-            echo json_encode(['status' => 400, 'response' => ['message' => 'Email and password are required']]);
-            return;
+    public function login() {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json"); // กำหนด Content-Type ให้เป็น JSON
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            exit(0);
         }
 
-        $email = $input['email'];
-        $password = $input['password'];
+    // โค้ด logic ของ login ต่อไปนี้จะถูกเรียกใช้ในกรณีที่ไม่ใช่ OPTIONS
+    $inputJSON = file_get_contents('php://input');
+    $input = json_decode($inputJSON, true);
 
-        $user = $this->User->findByEmail($email);
-        if (!$user) {
-            echo json_encode(['status' => 401, 'response' => ['message' => 'User not found']]);
-            return;
-        }
-
-        if (!password_verify($password, $user['password'])) {
-            echo json_encode(['status' => 401, 'response' => ['message' => 'Invalid password']]);
-            return;
-        }
-
-        $iat = time();
-        $exp = $iat + 3600;
-
-        $payload = [
-            "iss" => "YourIssuer",
-            "aud" => "YourAudience",
-            "sub" => $user['id'],
-            "iat" => $iat,
-            "exp" => $exp,
-            "email" => $user['email'],
-        ];
-
-        $token = JwtHelper::generate_jwt($payload);
-
-        echo json_encode(['status' => 200, 'response' => ['message' => 'Login Successful', 'token' => $token]]);
+    if (!isset($input['email']) || !isset($input['password'])) {
+        echo json_encode(['status' => 400, 'response' => ['message' => 'Email and password are required']]);
+        return;
     }
+
+    $email = $input['email'];
+    $password = $input['password'];
+
+    $user = $this->User->findByEmail($email);
+    if (!$user) {
+        echo json_encode(['status' => 401, 'response' => ['message' => 'User not found']]);
+        return;
+    }
+
+    if (!password_verify($password, $user['password'])) {
+        echo json_encode(['status' => 401, 'response' => ['message' => 'Invalid password']]);
+        return;
+    }
+
+    $iat = time();
+    $exp = $iat + 3600;
+
+    $payload = [
+        "iss" => "YourIssuer",
+        "aud" => "YourAudience",
+        "sub" => $user['id'],
+        "iat" => $iat,
+        "exp" => $exp,
+        "email" => $user['email'],
+    ];
+
+    $token = JwtHelper::generate_jwt($payload);
+
+    echo json_encode(['status' => 200, 'response' => ['message' => 'Login Successful', 'token' => $token]]);
+
+    // redirect('/');
+}
+
 
     public function update($id){
         $inputJSON = file_get_contents('php://input');
