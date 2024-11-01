@@ -27,6 +27,15 @@ class UserController extends CI_Controller
 
     public function register()
     {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Content-Type: application/json");
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            exit(0);
+        }
+        
         $inputJSON = file_get_contents('php://input');
         $input = json_decode($inputJSON, true);
 
@@ -77,13 +86,13 @@ class UserController extends CI_Controller
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, Authorization");
-        header("Content-Type: application/json"); // กำหนด Content-Type ให้เป็น JSON
+        header("Content-Type: application/json");
     
         if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
             exit(0);
         }
 
-    // โค้ด logic ของ login ต่อไปนี้จะถูกเรียกใช้ในกรณีที่ไม่ใช่ OPTIONS
+
     $inputJSON = file_get_contents('php://input');
     $input = json_decode($inputJSON, true);
 
