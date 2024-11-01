@@ -11,8 +11,9 @@ class ActivityController extends CI_Controller{
 
     public function index(){
         $data['query'] = $this->Activity->findAll();
-        $this->load->view('component/Card', $data);
-        echo json_encode($data);
+        header('Content-Type: application/json'); // Set JSON header
+        echo json_encode($data); // Output JSON data
+        exit; // Stop further execution
     }
 
     public function getById($id){

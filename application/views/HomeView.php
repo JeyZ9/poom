@@ -30,7 +30,7 @@
                     </div>
 
                     <!-- blog -->
-                    <div class="">
+                    <div class="w-full">
                         <?php $this->load->view('component/Card'); ?>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
 
                     <!-- blog -->
                     <div class="">
-                        <?php $this->load->view('component/Card'); ?>
+                        <?php $this->load->view('component/Card');?>
                     </div>
                 </div>
             </div>
