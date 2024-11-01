@@ -26,7 +26,7 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน" required value="password123">
                     </div>
                     <button type="submit" class="btn text-white bg-[#ED9455] btn-block">เข้าสู่ระบบ</button>
-                    <button type="submit" class="btn btn-block text-[12px] text-[#808080]">สร้างบัญชีผู้ใช้</button>
+                    <a href="register" class="btn btn-block text-[12px] text-[#808080]">สร้างบัญชีผู้ใช้</a>
                 </form>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 const password = $('#password').val();
 
                 $.ajax({
-                    url: 'http://localhost/project-final/index.php/usercontroller/login',
+                    url: 'http://localhost/project-final/index.php/usercontroller/storeLogin',
                     type: 'POST',
                     contentType: 'application/json',
                     dataType: 'json',

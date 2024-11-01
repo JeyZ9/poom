@@ -25,7 +25,15 @@ class UserController extends CI_Controller
         echo json_encode($data);
     }
 
-    public function register()
+    public function login(){
+        $this->load->view('LoginView');
+    }
+
+    public function register(){
+        $this->load->view('RegisterView');
+    }
+
+    public function store()
     {
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
@@ -35,7 +43,7 @@ class UserController extends CI_Controller
         if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
             exit(0);
         }
-        
+
         $inputJSON = file_get_contents('php://input');
         $input = json_decode($inputJSON, true);
 
@@ -78,11 +86,12 @@ class UserController extends CI_Controller
         }
 
         $this->UserRole->assignRole($userId, $role_id);
+        echo json_encode(['status' => 200, 'response' => ['message' => 'Register Successfully']]);
 
         
     }
 
-    public function login() {
+    public function storeLogin() {
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, Authorization");

@@ -20,28 +20,28 @@
                 <form id="registerForm">
                     <div class="form-group w-[313px]">
                         <label for="student_id">รหัสนักเรียน</label>
-                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="รหัสนักเรียน" required>
+                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="รหัสนักเรียน" required value="664259015">
                     </div>
                     <div class="form-group w-[313px]">
                         <label for="name">ชื่อ</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อ" required>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อ" required value="wisarut">
                     </div>
                     <div class="form-group w-[313px]">
                         <label for="email">อีเมล</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล" required value="664259015@webmail.npru.ac.th">
                     </div>
                     <div class="form-group w-[313px]">
                         <label for="password">รหัสผ่าน</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน" required value="123456asd">
                     </div>
                     <div class="form-group w-[313px]">
                         <label for="confirm_password">ยืนยันรหัสผ่าน</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" required>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" required value="123456asd">
                     </div>
                     <input type="hidden" name="role_id" id="role_id" value="1">
                     
                     <button type="submit" class="btn text-white bg-[#ED9455] btn-block">สมัครสมาชิก</button>
-                    <button type="button" class="btn btn-block text-[12px] text-[#808080]" onclick="window.location.href='/path/to/login'">เข้าสู่ระบบ</button>
+                    <button type="button" class="btn btn-block text-[12px] text-[#808080]" onclick="window.location.href='login'">เข้าสู่ระบบ</button>
                 </form>
             </div>
         </div>
@@ -62,7 +62,7 @@
                 const role_id = $('#role_id').val();
 
                 $.ajax({
-                    url: 'http://localhost/project-final/index.php/usercontroller/register',
+                    url: 'http://localhost/project-final/index.php/usercontroller/store',
                     type: 'POST',
                     contentType: 'application/json',
                     dataType: 'json',
@@ -82,7 +82,7 @@
                                 .text(response.response.message);
                             if (response.status === 200) {
                                 setTimeout(function() {
-                                    window.location.href = '/page/login';
+                                    window.location.href = 'login';
                                 }, 500);
                             }
                         } else {
