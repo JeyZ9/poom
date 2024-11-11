@@ -6,29 +6,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="w-full">
-        <div class="grid grid-cols-2">
-            <div class="">
-                <?php include('component/Hero.php'); ?>
-            </div>
+    <div class="w-screen h-screen">
+        <div class="flex justify-center items-centetr w-full h-full">
 
             <div class="px-[8rem] flex flex-col items-center justify-center">
-                <h3 class="text-center text-[61px] font-extrabold text-[#ED9455] mb-10">สมัครสมาชิก</h3>
+                <h3 class="text-center text-[61px] font-extrabold text-red-300 mb-10">สมัครสมาชิก</h3>
                 <div id="alert" class="alert d-none" role="alert"></div>
                 
                 <!-- Registration Form -->
                 <form id="registerForm">
                     <div class="form-group w-[313px]">
                         <label for="student_id">รหัสนักเรียน</label>
-                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="รหัสนักเรียน" required value="664259015">
+                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="รหัสนักเรียน" required value="664259012">
                     </div>
                     <div class="form-group w-[313px]">
                         <label for="name">ชื่อ</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อ" required value="wisarut">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อ" required value="poom">
                     </div>
                     <div class="form-group w-[313px]">
                         <label for="email">อีเมล</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล" required value="664259015@webmail.npru.ac.th">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล" required value="664259012@webmail.npru.ac.th">
                     </div>
                     <div class="form-group w-[313px]">
                         <label for="password">รหัสผ่าน</label>
@@ -40,7 +37,7 @@
                     </div>
                     <input type="hidden" name="role_id" id="role_id" value="1">
                     
-                    <button type="submit" class="btn text-white bg-[#ED9455] btn-block">สมัครสมาชิก</button>
+                    <button type="submit" class="btn text-white bg-red-300 btn-block">สมัครสมาชิก</button>
                     <button type="button" class="btn btn-block text-[12px] text-[#808080]" onclick="window.location.href='login'">เข้าสู่ระบบ</button>
                 </form>
             </div>
@@ -62,7 +59,7 @@
                 const role_id = $('#role_id').val();
 
                 $.ajax({
-                    url: 'http://localhost/project-final/index.php/usercontroller/store',
+                    url: 'http://localhost/new-php-project-final/index.php/usercontroller/store',
                     type: 'POST',
                     contentType: 'application/json',
                     dataType: 'json',

@@ -7,25 +7,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="w-full">
-        <div class="grid grid-cols-2">
-            <div class="">
-                <?php include('component/Hero.php'); ?>
-            </div>
+    <div class="w-screen h-screen">
+        <div class="flex justify-center items-centetr w-full h-full">
 
             <div class="px-[8rem] flex flex-col items-center justify-center">
-                <h3 class="text-center text-[61px] font-extrabold text-[#ED9455] mb-10">เข้าสู่ระบบ</h3>
+                <h3 class="text-center text-[61px] font-extrabold text-red-300 mb-10">เข้าสู่ระบบ</h3>
                 <div id="alert" class="alert d-none" role="alert"></div>
                 <form id="loginForm">
                     <div class="form-group w-[313px]">
                         <label for="email">อีเมล</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล" required value="johndo@example.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="อีเมล" required value="664259012@webmail.npru.ac.th">
                     </div>
                     <div class="form-group">
                         <label for="password">รหัสผ่าน</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน" required value="password123">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน" required value="123456asd">
                     </div>
-                    <button type="submit" class="btn text-white bg-[#ED9455] btn-block">เข้าสู่ระบบ</button>
+                    <button type="submit" class="btn text-white bg-red-300 btn-block">เข้าสู่ระบบ</button>
                     <a href="register" class="btn btn-block text-[12px] text-[#808080]">สร้างบัญชีผู้ใช้</a>
                 </form>
             </div>
@@ -42,7 +39,7 @@
                 const password = $('#password').val();
 
                 $.ajax({
-                    url: 'http://localhost/project-final/index.php/usercontroller/storeLogin',
+                    url: 'http://localhost/new-php-project-final/index.php/usercontroller/storeLogin',
                     type: 'POST',
                     contentType: 'application/json',
                     dataType: 'json',
@@ -54,7 +51,7 @@
                                        .text(response.response.message);
                             if (response.status === 200) {
                                 setTimeout(function() {
-                                    window.location.href = 'http://localhost/project-final/index.php/page/home'; // Adjust target URL as needed
+                                    window.location.href = 'http://localhost/new-php-project-final/index.php/usercontroller'; // Adjust target URL as needed
                                 }, 500);
                             }
                         } else {
